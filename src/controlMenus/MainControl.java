@@ -16,11 +16,13 @@ public class MainControl {
         MainMenus mainMenu = new MainMenus();
         PaymentControl paymentControl = new PaymentControl();
         SaleControl saleControl = new SaleControl();
+        EmployeeControl employeeControl = new EmployeeControl();
 
         ArrayList<HourlyEmployee> hourlyEmployeeArrayList = new ArrayList();
         ArrayList<SalariedEmployee> salariedEmployeeArrayList = new ArrayList();
         ArrayList<CommissionEmployee> commissionEmployeeArrayList = new ArrayList();
         ArrayList<UnionEmployee> unionEmployeeArrayList = new ArrayList();
+        int lastEmployeeID = 1;
 
         while (on) {
 
@@ -29,15 +31,44 @@ public class MainControl {
             String option = input.nextLine();
             switch (option) {
                 case "1":
+                    mainMenu.employeeType();
+                    type = input.nextLine();
+                    switch (type){
+                        case "1":
+                            hourlyEmployeeArrayList = employeeControl.createHourly(hourlyEmployeeArrayList,lastEmployeeID);
+                            lastEmployeeID++;
+                        case "2":
+                            salariedEmployeeArrayList = employeeControl.createSalaried(salariedEmployeeArrayList,lastEmployeeID);
+                            lastEmployeeID++;
+                        case "3":
+                            commissionEmployeeArrayList = employeeControl.createComission(commissionEmployeeArrayList,lastEmployeeID);
+                            lastEmployeeID++;
+                        default:
+                            System.out.println("Invalid option.");
+                    }
                     break;
 
                 case "2":
+                    mainMenu.employeeType();
+                    type = input.nextLine();
+                    switch (type){
+                        case "1":
+                            hourlyEmployeeArrayList = employeeControl.removeHourly(hourlyEmployeeArrayList);
+                        case "2":
+                            salariedEmployeeArrayList = employeeControl.removeSalaried(salariedEmployeeArrayList);
+                        case "3":
+                            commissionEmployeeArrayList = employeeControl.removeComission(commissionEmployeeArrayList);
+                        default:
+                            System.out.println("Invalid option.");
+                    }
                     break;
 
                 case "3":
+                    hourlyEmployeeArrayList = employeeControl.addHours(hourlyEmployeeArrayList);
                     break;
 
                 case "4":
+                    commissionEmployeeArrayList = employeeControl.addSale(commissionEmployeeArrayList);
                     break;
 
                 case "5":

@@ -6,9 +6,9 @@ public class HourlyEmployee extends Employee {
     private double hourlyWage;
 
     public HourlyEmployee(String fullName, String address, String cpf, String paymentMethod, boolean contributesToUnion,
-                          int employeeID, double hoursWorkedThisWeek, double hourlyWage) {
+                          int employeeID, double hourlyWage) {
         super(fullName, address, cpf, paymentMethod, contributesToUnion, employeeID);
-        this.hoursWorkedThisWeek = hoursWorkedThisWeek;
+        this.hoursWorkedThisWeek = 0;
         this.hourlyWage = hourlyWage;
     }
 
@@ -35,5 +35,9 @@ public class HourlyEmployee extends Employee {
 
     public void setHourlyWage(double hourlyWage) {
         this.hourlyWage = hourlyWage;
+    }
+
+    public void addHours(double hours) {
+        this.hoursWorkedThisWeek = this.hoursWorkedThisWeek+hours;
     }
 }

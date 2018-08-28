@@ -22,5 +22,12 @@ public class MainMenus {
 
     }
 
+    public void employeeType(){
+        System.out.println("Choose the employee type:");
+        System.out.println("(1)Hourly employee");
+        System.out.println("(2)Salaried employee");
+        System.out.println("(2)Comission employee");
+    }
+
 
 }
