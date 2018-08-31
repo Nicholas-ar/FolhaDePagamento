@@ -12,13 +12,15 @@ public class HourlyEmployee extends Employee {
         this.hourlyWage = hourlyWage;
     }
 
-    public double calculateSalary(double hourlyWage, double hoursWorkedThisWeek){
+    public double calculateSalary(){
         double temp = hoursWorkedThisWeek;
         hoursWorkedThisWeek = 0;
+        double month = this.getMonthlyCosts();
+        this.setMonthlyCosts(0);
         if(temp > 40){
             return (hourlyWage * 40) + (hourlyWage * 1.5 * (temp - 40));
         }
-        else return hourlyWage * temp;
+        else return (hourlyWage * temp) - this.getServiceCosts() - month;
     }
 
     public double getHoursWorkedThisWeek() {

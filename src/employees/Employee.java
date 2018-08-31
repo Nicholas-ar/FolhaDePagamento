@@ -7,6 +7,8 @@ public class Employee {
     private String paymentMethod;
     private boolean contributesToUnion;
     private int employeeID;
+    private double serviceCosts;
+    private double monthlyCosts;
 
     public Employee(String fullName, String address, String cpf, String paymentMethod, boolean contributesToUnion,
                     int employeeID) {
@@ -16,6 +18,8 @@ public class Employee {
         this.employeeID = employeeID;
         this.paymentMethod = paymentMethod;
         this.contributesToUnion = contributesToUnion;
+        this.serviceCosts = 0;
+        this.monthlyCosts = 0;
     }
 
     @Override
@@ -72,4 +76,24 @@ public class Employee {
         return employeeID;
     }
 
+    public double getServiceCosts() {
+        return serviceCosts;
+    }
+
+    public void setServiceCosts(double serviceCosts) {
+        this.serviceCosts = serviceCosts;
+    }
+
+    public void addServiceCost(double cost) {
+        this.serviceCosts = this.serviceCosts + cost;
+
+    }
+
+    public double getMonthlyCosts() {
+        return monthlyCosts;
+    }
+
+    public void setMonthlyCosts(double monthlyCosts) {
+        this.monthlyCosts = monthlyCosts;
+    }
 }

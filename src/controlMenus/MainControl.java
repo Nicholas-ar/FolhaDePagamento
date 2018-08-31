@@ -1,11 +1,12 @@
 package controlMenus;
 
 import employees.*;
-import union.*;
 import viewMenus.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainControl {
@@ -17,11 +18,14 @@ public class MainControl {
         PaymentControl paymentControl = new PaymentControl();
         SaleControl saleControl = new SaleControl();
         EmployeeControl employeeControl = new EmployeeControl();
+        PaymentControl payControl = new PaymentControl();
+        Date nowDate = new Date();
+        Calendar nowCalendar = Calendar.getInstance();
+        nowCalendar.setTime(nowDate);
 
         ArrayList<HourlyEmployee> hourlyEmployeeArrayList = new ArrayList();
         ArrayList<SalariedEmployee> salariedEmployeeArrayList = new ArrayList();
         ArrayList<CommissionEmployee> commissionEmployeeArrayList = new ArrayList();
-        ArrayList<UnionEmployee> unionEmployeeArrayList = new ArrayList();
         int lastEmployeeID = 1;
 
         while (on) {
@@ -72,12 +76,34 @@ public class MainControl {
                     break;
 
                 case "5":
+                    mainMenu.employeeType();
+                    type = input.nextLine();
+                    switch (type){
+                        case "1":
+                            hourlyEmployeeArrayList = employeeControl.addCost(hourlyEmployeeArrayList);
+                        case "2":
+                            salariedEmployeeArrayList = employeeControl.addCostSalaried(salariedEmployeeArrayList);
+                        case "3":
+                            commissionEmployeeArrayList = employeeControl.addCostComissioned(commissionEmployeeArrayList);
+                        default:
+                            System.out.println("Invalid option.");
+                    }
                     break;
 
                 case "6":
                     break;
 
                 case "7":
+                    System.out.println("Paying all employees scheduled for the day");
+                    if(nowCalendar.get(Calendar.DAY_OF_WEEK)== 6){
+                        System.out.println("Today is friday, paying hourly employees and checking commissioned employees");
+                        hourlyEmployeeArrayList = payControl.payHourly(hourlyEmployeeArrayList);
+                        commissionEmployeeArrayList = payControl.payComissioned(commissionEmployeeArrayList);
+                    }
+                    if (payControl.getLastWorkDayOfMonth(nowCalendar).equals(nowCalendar)){
+                        System.out.println("Today is the last work day of the month, paying monthly employees");
+                        salariedEmployeeArrayList = payControl.paySalaried(salariedEmployeeArrayList);
+                    }
                     break;
 
                 case "8":

@@ -17,4 +17,10 @@ public class SalariedEmployee extends Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    public double calculateSalary() {
+        double month = this.getMonthlyCosts();
+        this.setMonthlyCosts(0);
+        return this.salary - month - this.getServiceCosts();
+    }
 }

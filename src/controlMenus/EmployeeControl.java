@@ -157,6 +157,66 @@ public class EmployeeControl {
     }
 
     public ArrayList<CommissionEmployee> addSale(ArrayList<CommissionEmployee> commissionEmployeeArrayList) {
+        System.out.println("Type the CPF of the employee you wish to add the sale to:");
+        String searchCPF = input.nextLine();
+        for (int i = 0; i < commissionEmployeeArrayList.size(); i++) {
+            if (commissionEmployeeArrayList.get(i).getCpf().equals(searchCPF)) {
+                System.out.println("Employee found, type the value of the sale.");
+                double sale = input.nextDouble();
+                commissionEmployeeArrayList.get(i).addSalesAmount(sale);
+                System.out.println("Sale added successfully.");
+                return commissionEmployeeArrayList;
+            }
+        }
+        System.out.println("Employee not found.");
+        return commissionEmployeeArrayList;
+    }
 
+    public ArrayList<HourlyEmployee> addCost(ArrayList<HourlyEmployee> employeeArrayList) {
+        System.out.println("Type the CPF of the employee you wish to add the cost to:");
+        String searchCPF = input.nextLine();
+        for (int i = 0; i < employeeArrayList.size(); i++) {
+            if (employeeArrayList.get(i).getCpf().equals(searchCPF)) {
+                System.out.println("Employee found, type the cost of the service.");
+                double cost = input.nextDouble();
+                employeeArrayList.get(i).addServiceCost(cost);
+                System.out.println("Service cost added successfully.");
+                return employeeArrayList;
+            }
+        }
+        System.out.println("Employee not found.");
+        return employeeArrayList;
+    }
+
+    public ArrayList<SalariedEmployee> addCostSalaried(ArrayList<SalariedEmployee> salariedEmployeeArrayList) {
+        System.out.println("Type the CPF of the employee you wish to add the cost to:");
+        String searchCPF = input.nextLine();
+        for (int i = 0; i < salariedEmployeeArrayList.size(); i++) {
+            if (salariedEmployeeArrayList.get(i).getCpf().equals(searchCPF)) {
+                System.out.println("Employee found, type the cost of the service.");
+                double cost = input.nextDouble();
+                salariedEmployeeArrayList.get(i).addServiceCost(cost);
+                System.out.println("Service cost added successfully.");
+                return salariedEmployeeArrayList;
+            }
+        }
+        System.out.println("Employee not found.");
+        return salariedEmployeeArrayList;
+    }
+
+    public ArrayList<CommissionEmployee> addCostComissioned(ArrayList<CommissionEmployee> commissionEmployeeArrayList) {
+        System.out.println("Type the CPF of the employee you wish to add the cost to:");
+        String searchCPF = input.nextLine();
+        for (int i = 0; i < commissionEmployeeArrayList.size(); i++) {
+            if (commissionEmployeeArrayList.get(i).getCpf().equals(searchCPF)) {
+                System.out.println("Employee found, type the cost of the service.");
+                double cost = input.nextDouble();
+                commissionEmployeeArrayList.get(i).addServiceCost(cost);
+                System.out.println("Service cost added successfully.");
+                return commissionEmployeeArrayList;
+            }
+        }
+        System.out.println("Employee not found.");
+        return commissionEmployeeArrayList;
     }
 }

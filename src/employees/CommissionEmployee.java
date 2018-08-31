@@ -1,15 +1,23 @@
 package employees;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.time.*;
+
 public class CommissionEmployee extends SalariedEmployee{
 
     private double comissionRate;
     private double salesTotalAmount;
+    private LocalDate lastPaid;
 
     public CommissionEmployee(String fullName, String address, String cpf, String paymentMethod, boolean contributesToUnion,
                               int employeeID, double salary, double commissionRate) {
         super(fullName, address, cpf, paymentMethod, contributesToUnion, employeeID,salary);
         this.comissionRate = commissionRate;
         this.salesTotalAmount = 0.0;
+        Date nowDate = new Date();
+        this.lastPaid = LocalDate.now();
+
     }
 
     public double calculateSalary(){
@@ -33,4 +41,15 @@ public class CommissionEmployee extends SalariedEmployee{
         this.salesTotalAmount = salesTotalAmount;
     }
 
+    public void addSalesAmount(double sale) {
+        this.salesTotalAmount = this.salesTotalAmount + sale;
+    }
+
+    public LocalDate getLastPaid() {
+        return lastPaid;
+    }
+
+    public void setLastPaid(LocalDate lastPaid) {
+        this.lastPaid = lastPaid;
+    }
 }
